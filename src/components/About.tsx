@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Flame, Award, Users, PartyPopper } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Flame, Award, Users, ChevronDown } from "lucide-react";
 
 const stats = [
   { icon: Award, value: "4.9", label: "Avaliação Google" },
@@ -10,6 +11,8 @@ const stats = [
 ];
 
 export function About() {
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <section className="relative py-24 md:py-32 bg-dark overflow-hidden">
       {/* Padrão decorativo */}
@@ -35,28 +38,115 @@ export function About() {
             Sobre nós
           </p>
           <h2 className="section-title mb-6 text-balance">
-            Tradição artesanal, <br />
-            <span className="text-gradient-malvadao">atitude malvada.</span>
+            Nossa <span className="text-gradient-malvadao">história</span> ❤️🍔
           </h2>
 
           <div className="space-y-4 text-cream/75 text-lg leading-relaxed">
             <p>
-              O <strong className="text-cream">Malvadão</strong> nasceu em
-              Praia Grande com uma missão simples: fazer o melhor hambúrguer
-              artesanal da região, sem enrolação.
+              Antes mesmo de existir a{" "}
+              <strong className="text-cream">Malvadão Artesanal Burguer</strong>,
+              já existia um sonho — e ele começou dentro de casa.
             </p>
             <p>
-              Trabalhamos com <strong className="text-cream">100% costela bovina</strong>,
-              ingredientes selecionados e o famoso pão brioche/australiano que
-              virou marca registrada da casa. Cada lanche é montado na hora, com
-              aquele capricho que você sente na primeira mordida.
+              A Simone, ou melhor, a nossa <strong className="text-cream">Sissi</strong>,
+              sempre teve um talento especial para preparar lanches. Em meio à
+              família, entre brincadeiras e refeições, surgiu aquela ideia que
+              parecia apenas uma piada: &ldquo;E se a gente abrisse uma
+              lanchonete?&rdquo;
             </p>
             <p>
-              Aqui o atendimento é próximo, o ambiente é descolado e o sabor é
-              de verdade. Seja no salão, no drive-thru ou no delivery — a
-              experiência Malvadão é a mesma.
+              Até o nome já estava quase escolhido: &ldquo;Sissi Lanches&rdquo; ou
+              &ldquo;Lanches Sissi&rdquo;, em uma brincadeira inspirada no famoso
+              &ldquo;Carrara Táxi ou Táxi Carrara&rdquo;, do Agostinho Carrara, de
+              A Grande Família. 😂
             </p>
+            <p>
+              Mas, para o <strong className="text-cream">Emerson</strong>, marido e
+              sócio da Simone, aquilo foi deixando de ser apenas uma brincadeira. A
+              vontade de ter uma hamburgueria foi crescendo, até que, no dia{" "}
+              <strong className="text-cream">10 de julho de 2023</strong>, o sonho
+              finalmente ganhou um endereço e um nome: nascia a{" "}
+              <strong className="text-cream">Malvadão Artesanal Burguer</strong>.
+            </p>
+
+            {/* Continuação da história (Saiba mais) */}
+            <AnimatePresence initial={false}>
+              {expanded && (
+                <motion.div
+                  id="historia-completa"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="overflow-hidden space-y-4"
+                >
+                  <p>
+                    No começo, alguns funcionários ajudavam a tocar a operação, mas
+                    pouco a pouco a Malvadão foi se tornando aquilo que hoje é a sua
+                    maior essência: <strong className="text-cream">uma empresa familiar</strong>.
+                  </p>
+                  <p>
+                    Primeiro veio o <strong className="text-cream">Everton</strong>, filho
+                    do casal, assumindo a chapa. Logo depois, a{" "}
+                    <strong className="text-cream">Yasmin</strong> chegou para cuidar do
+                    atendimento. Quando o Everton deixou a chapa, a Simone assumiu — e
+                    nunca mais saiu de lá. ❤️
+                  </p>
+                  <p>
+                    Depois vieram a <strong className="text-cream">Mariana</strong>, nora
+                    da família, no atendimento, e a{" "}
+                    <strong className="text-cream">Marli</strong>, mãe da Simone e
+                    carinhosamente conhecida como Noninha, dando aquele suporte tão
+                    importante nos bastidores.
+                  </p>
+                  <p>
+                    E foi assim, trabalhando juntos, que a Malvadão foi crescendo. Entre
+                    uma chapa quente, um pedido saindo, uma batatinha com aquele tempero
+                    único e nossos molhos e lanches feitos com muito carinho, fomos
+                    conquistando algo que para nós vale ainda mais do que qualquer
+                    número: a confiança e o carinho dos nossos clientes.
+                  </p>
+                  <p>
+                    Hoje, já são mais de <strong className="text-cream">10 mil pedidos</strong>{" "}
+                    realizados e mais de{" "}
+                    <strong className="text-cream">200 avaliações positivas</strong> no
+                    Google. São milhares de pessoas que passaram pelo nosso cantinho e
+                    fizeram parte dessa história.
+                  </p>
+                  <p>
+                    No fim das contas, a Malvadão é a realização de um sonho que começou
+                    com o Emerson, ganhou vida pelas mãos da Simone e hoje é construído
+                    diariamente por toda a família.
+                  </p>
+                  <p className="text-cream italic">
+                    Somos uma família fazendo o que ama, para servir pessoas que se
+                    tornaram parte da nossa história.
+                  </p>
+                  <p>
+                    E se você chegou até aqui, seja muito bem-vindo ao nosso cantinho.
+                    <br />
+                    <strong className="text-cream">
+                      A casa é nossa, mas a Malvadão também é um pouquinho sua. ❤️🍔
+                    </strong>
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
+
+          <button
+            type="button"
+            onClick={() => setExpanded((prev) => !prev)}
+            aria-expanded={expanded}
+            aria-controls="historia-completa"
+            className="btn-secondary mt-8"
+          >
+            {expanded ? "Mostrar menos" : "Saiba mais"}
+            <ChevronDown
+              size={20}
+              className={`transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
+            />
+          </button>
         </motion.div>
 
         {/* Stats / Visual */}
